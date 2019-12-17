@@ -3,7 +3,15 @@
  */
 
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Task1replace {
     public static void main(String[] args) throws IOException {
@@ -13,19 +21,11 @@ public class Task1replace {
         FileOutputStream out = new FileOutputStream(file, true);
         FileInputStream in = new FileInputStream("src/main/resources/task1.txt");
 
+        Path path = Paths.get("src/main/resources/task1.txt");
+        Charset charset = StandardCharsets.UTF_8;
 
-        String greetings = "Hello. It's the hello test. \n";
-//        out.write(greetings.getBytes());
-
-        int ch;
-for (ch = 0; ch <10; ch++){
-        out.write(greetings.getBytes());
-}
-        while ((ch = in.read()) != -1) {
-            if (ch == 'l') ch = 'y';
-            out.write(ch);
-        }
-        out.close();
-        in.close();
+        String content = new String(Files.readAllBytes(path), charset);
+        content = content.replaceAll("Hello", "1234");
+        Files.write(path, content.getBytes(charset));
     }
 }

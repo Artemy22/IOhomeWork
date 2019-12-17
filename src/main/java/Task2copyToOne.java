@@ -11,8 +11,8 @@ public class Task2copyToOne {
     public static void main(String[] args) throws IOException {
 
         File fileMaim = new File("src/main/resources/task21.txt");
+        System.out.println(fileMaim.canRead());
         FileOutputStream out = new FileOutputStream(fileMaim, true);
-        FileInputStream inMain = new FileInputStream("src/main/resources/task21.txt");
         FileInputStream in2 = new FileInputStream("src/main/resources/task22.txt");
         FileInputStream in3 = new FileInputStream("src/main/resources/task23.txt");
         System.out.println(in2.read());
