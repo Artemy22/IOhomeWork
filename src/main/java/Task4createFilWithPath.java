@@ -12,8 +12,11 @@ import java.util.Date;
 public class Task4createFilWithPath {
 
     static File dir = new File("Directory1");
+    static String dirName;
 
     public static void main(String[] args) throws IOException {
+        dirName = "Directory2";
+        dirChecker();
         getPathFile();
         getFilesWithLastModif();
 
@@ -44,9 +47,14 @@ public class Task4createFilWithPath {
         return new Date(innerFile.lastModified());
     }
 
+    public static void dirChecker() throws IOException {
+        if (!new File(dirName).exists()) {
+            new File(dirName).mkdirs();
+        }
+    }
 
     public static void fileWriter(String whatShouldBeWritten) throws IOException {
-        File fileToWrite = new File("Directory2/task#4");
+        File fileToWrite = new File(dirName+"/task#4");
         BufferedWriter writer = new BufferedWriter(new FileWriter(fileToWrite, true));
 
         writer.append('\n');
